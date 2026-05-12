@@ -241,7 +241,6 @@ int main(int argc, char **argv) {
   // Configure the argument parser
   args::ArgumentParser parser("Takes a directory and recursively computes QEM and ICE coarsened data");
   args::Positional<std::string> inputDirectory(parser, "input", "Directory to read .obj files from.");
-  args::Positional<std::string> outputDirectory(parser, "output", "Directory to write .ply files to.");
 
   // Parse args
   try {
@@ -260,20 +259,11 @@ int main(int argc, char **argv) {
     std::cerr << "Please specify an input directory." << std::endl;
     return EXIT_FAILURE;
   }
-  if (!outputDirectory) {
-    std::cerr << "Please specify an output directory." << std::endl;
-    return EXIT_FAILURE;
-  }
 
 
   // Read through input all inputs
   std::string in_dir = args::get(inputDirectory);
-  std::string out_dir = args::get(outputDirectory);
 
-  // Check if the output directory exists -- if not, create it
-  if (!fs::exists(fs::path(out_dir))) {
-    fs::create_directory(out_dir);
-  }
 
   for (const auto& entry : fs::recursive_directory_iterator(in_dir)) {
     fmt::println("Traversing: {}", entry.path().string());
