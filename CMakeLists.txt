@@ -14,6 +14,12 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(fmt)
 
+FetchContent_Declare(
+  args
+  GIT_REPOSITORY https://github.com/Taywee/args.git
+  GIT_TAG        6.4.6
+)
+FetchContent_MakeAvailable(args)
 
 ### Configure output locations
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
@@ -93,8 +99,6 @@ set(SRCS
 # To change the name of your executable, change "gc_project" in the lines below to whatever you want
 add_executable(bulk_mesh_coarsen "${SRCS}")
 target_include_directories(bulk_mesh_coarsen PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include/")
-# add the args.hxx project which we use for command line args
-target_include_directories(bulk_mesh_coarsen PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/deps/polyscope/deps/args")
 # target_include_directories(simplif_analysis PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src/intrinsic_simp/src")
 
-target_link_libraries(bulk_mesh_coarsen geometry-central fmt::fmt)
+target_link_libraries(bulk_mesh_coarsen geometry-central fmt::fmt args)

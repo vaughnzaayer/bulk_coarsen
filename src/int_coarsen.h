@@ -15,13 +15,7 @@
 #include "geometrycentral/surface/heat_method_distance.h"
 #include "geometrycentral/utilities/utilities.h"
 
-#include "polyscope/polyscope.h"
-#include "polyscope/surface_mesh.h"
-#include "polyscope/point_cloud.h"
-#include "polyscope/curve_network.h"
-
-#include "args/args.hxx"
-#include "imgui.h"
+#include "args.hxx"
 
 #include <Eigen/Dense>
 #include <fmt/base.h>
